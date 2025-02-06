@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine?</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffebf0;
+        font-family: "Arial", sans-serif;
+        transition: background 0.5s;
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+      }
+
+      .cute-image {
+        width: 200px;
+        margin-bottom: 1rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      h1 {
+        color: #ff3366;
+        margin-bottom: 2rem;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #yesButton {
+        background: #ff3366;
+        color: white;
+      }
+
+      #noButton {
+        background: #cccccc;
+        color: #333;
+      }
+
+      .success {
+        background: #fff0f4;
+      }
+
+      .flower {
+        font-size: 4rem;
+        margin: 1rem 0;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .success {
+        background: #fff0f4;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+      }
+
+      .success img {
+        width: 200px;
+        height: auto;
+        border-radius: 15px;
+        margin-bottom: 15px;
+      }
+
+      .success h1 {
+        color: #ff3366;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .success p {
+        color: #333;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="rose-cute.gif" alt="Cute Valentine" class="cute-image" />
+      <h1>Will You Be My Valentine? 💖</h1>
+      <div class="buttons">
+        <button id="yesButton">YES!</button>
+        <button id="noButton">No</button>
+      </div>
+    </div>
+
+    <script>
+      const yesBtn = document.getElementById("yesButton");
+      const noBtn = document.getElementById("noButton");
+      const container = document.querySelector(".container");
+      const body = document.querySelector("body");
+
+      let noClickCount = 0;
+      const noTexts = [
+        "Are you sure?",
+        "Really?",
+        "Think again!",
+        "Pleasssseeeee",
+        "Noooooooooooo",
+        "!!!!!!!!!!!",
+        ":/:/:/",
+        "Okay, but...",
+      ];
+      let yesScale = 1;
+
+      noBtn.addEventListener("click", () => {
+        noClickCount++;
+        if (noClickCount < noTexts.length) {
+          noBtn.textContent = noTexts[noClickCount];
+        } else {
+          noBtn.textContent = "Okay, but...";
+        }
+
+        yesScale += 0.2;
+        yesBtn.style.transform = `scale(${yesScale})`;
+        yesBtn.style.fontSize = `${1.2 + noClickCount * 0.1}rem`;
+      });
+
+      yesBtn.addEventListener("click", () => {
+        container.innerHTML = `
+                <div class="success">
+                    <img src="beef-beefbear.gif">
+                    <h1 >YAYYYYYYY!</h1>
+                    <p>Here's your flower 🌸</
+                </div>
+            `;
+        body.classList.add("success");
+      });
+    </script>
+  </body>
+</html>
